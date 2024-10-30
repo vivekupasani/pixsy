@@ -1,6 +1,6 @@
-# Picsy - Capture, Connect, Create
+# Pixsy - Capture, Connect, Create
 
-**Picsy** is a full-featured social media app where users can capture life’s best moments, connect with friends, and build a creative community. Developed with **Flutter**, **Bloc**, and **Firebase**, Picsy offers an engaging, photo-centered experience across **iOS**, **Android**, and **Web** platforms.
+**Pixsy** is a full-featured social media app where users can capture life’s best moments, connect with friends, and build a creative community. Developed with **Flutter**, **Bloc**, and **Firebase**, Pixsy offers an engaging, photo-centered experience across **iOS**, **Android**, and **Web** platforms.
 
 ## 📱 Features
 
@@ -73,8 +73,8 @@
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/vivekupasani/picsy.git
-   cd picsy
+   git clone https://github.com/vivekupasani/pixsy.git
+   cd pixsy
    ```
 
 2. **Install dependencies**:
@@ -121,4 +121,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-Enjoy sharing moments with **Picsy**!
+Enjoy sharing moments with **Pixsy**!
