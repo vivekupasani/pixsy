@@ -1,4 +1,4 @@
-# Pixsy - Capture, Connect, Create
+# Pixsy - Full Stack Social Media App
 
 **Pixsy** is a full-featured social media app where users can capture life’s best moments, connect with friends, and build a creative community. Developed with **Flutter**, **Bloc**, and **Firebase**, Pixsy offers an engaging, photo-centered experience across **iOS**, **Android**, and **Web** platforms.
 
