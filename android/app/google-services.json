@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1082040056479",
+    "project_id": "pixsy-b2ccb",
+    "storage_bucket": "pixsy-b2ccb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082040056479:android:e36d1850ac034c065380aa",
+        "android_client_info": {
+          "package_name": "com.vivekupasani.pixsy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEoZN0rS2qAZmPPFsXXERTe97prHtF4E0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
