@@ -1,46 +1,77 @@
 # Picsy - Capture, Connect, Create
 
-Welcome to **Picsy**! A photo-centered social media app that lets you capture life’s best moments, connect with friends, and create a vibrant community. Picsy is built with **Flutter**, **Bloc**, and **Firebase** and is available on **iOS**, **Android**, and **Web**.
+**Picsy** is a full-featured social media app where users can capture life’s best moments, connect with friends, and build a creative community. Developed with **Flutter**, **Bloc**, and **Firebase**, Picsy offers an engaging, photo-centered experience across **iOS**, **Android**, and **Web** platforms.
 
-## 🌟 Key Features
+## 📱 Features
 
-- **🔒 Email Authentication**: Secure, simple sign-up and sign-in.
-- **🤳 User Profile**: Customizable profiles displaying user photos and bio.
-- **📸 Image Sharing**: Post images with captions for others to like and comment on.
-- **💬 Like & Comment**: Interact with posts through likes and comments.
-- **❤️ Follow System**: Follow users to keep up with their posts.
-- **🔍 Search Users**: Discover new users and connect.
-- **🌗 Light & Dark Mode**: Switch themes to suit your preference.
+- 🔒 **Email Authentication**: Easy and secure sign-in and sign-up using Firebase.
+- 🤳 **User Profile**: Customizable user profiles, showcasing user photos and details.
+- 📸 **Post Images with Captions**: Share photos, add captions, and inspire others.
+- 💬 **Like & Comment**: Engage with posts by liking and commenting.
+- ❤️ **Follow System**: Connect with friends and followers to stay updated.
+- 🔍 **Search Users**: Find friends and discover new people.
+- 🌗 **Light & Dark Mode**: Choose between light and dark themes to enhance your experience.
 
-## 📸 App Preview
+## 🎨 Screenshots
 
-*Add screenshots here to showcase Picsy's key features and themes.*
+<img src="https://github.com/user-attachments/assets/a8672755-ee19-4abb-a12a-0c391b2c8448" alt="Screenshot 1" width="250"/>
+&nbsp
+&nbsp
+&nbsp
+<img src="https://github.com/user-attachments/assets/dd9024fb-866c-4d86-b9f7-ed7f130d3127" alt="Screenshot 2" width="250"/> 
+<br>
+<img src="https://github.com/user-attachments/assets/5892a062-22e6-4469-b70c-3a076c46ef34" alt="Screenshot 3" width="250"/> 
+&nbsp
+&nbsp
+&nbsp
+<img src="https://github.com/user-attachments/assets/6f848712-80f4-436a-bfce-6830dd90224d" alt="Screenshot 4" width="250"/> 
+<br>
+<img src="https://github.com/user-attachments/assets/2347eb91-4aef-4ecf-b15f-adf9824e6deb" alt="Screenshot 5" width="250"/> 
+&nbsp
+&nbsp
+&nbsp
+<img src="https://github.com/user-attachments/assets/01e8a644-0688-49ca-b505-ae6e99e3d7d2" alt="Screenshot 6" width="250"/> 
+<br>
+<img src="https://github.com/user-attachments/assets/28781f57-1e41-4b17-81c0-05976c733300" alt="Screenshot 7" width="250"/> 
+&nbsp
+&nbsp
+&nbsp
+<img src="https://github.com/user-attachments/assets/42f43371-1ba9-4787-9020-906c0230e322" alt="Screenshot 8" width="250"/> 
+<br>
+<img src="https://github.com/user-attachments/assets/80a032b2-8589-4686-85b5-71b8668660b6" alt="Screenshot 9" width="250"/> 
+&nbsp
+&nbsp
+&nbsp
+<img src="https://github.com/user-attachments/assets/29651392-6d98-4184-a56c-adf745b96b25" alt="Screenshot 10" width="250"/> 
+<br>
+<img src="https://github.com/user-attachments/assets/bb104467-06a0-41f3-a4f2-7bf5cc731c78" alt="Screenshot 11" width="250"/>
 
-## 🛠️ Tech Stack
+## 🛠️ Built With
 
 ### Core Technologies
-- **Flutter**: Cross-platform app development.
-- **Bloc**: State management for Flutter.
-- **Firebase**: Provides backend services including authentication and data storage.
+
+- **Flutter**: For cross-platform app development.
+- **Bloc (flutter_bloc)**: Manages app state with the BLoC pattern.
+- **Firebase**: Backend services for authentication, storage, and data management.
 
 ### Firebase Packages
-- **firebase_core**: Core Firebase functionality.
-- **firebase_auth**: Email-based user authentication.
-- **cloud_firestore**: Real-time database for user data and posts.
-- **firebase_storage**: Secure image storage for user uploads.
+
+- **firebase_core**: Initializes Firebase.
+- **firebase_auth**: Handles user authentication.
+- **cloud_firestore**: Stores and syncs data across users.
+- **firebase_storage**: Secure image storage for user photos.
 
 ### Additional Packages
+
 - **intl**: Localization and date formatting.
-- **file_picker**: Device image selection.
-- **cached_network_image**: Fast image loading and caching.
+- **file_picker**: Selects photos from the device.
+- **cached_network_image**: Provides fast and smooth image loading.
 
-## 🚀 Getting Started
-
-### Installation
+## 📦 Installation
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/picsy.git
+   git clone https://github.com/vivekupasani/picsy.git
    cd picsy
    ```
 
@@ -49,54 +80,43 @@ Welcome to **Picsy**! A photo-centered social media app that lets you capture li
    flutter pub get
    ```
 
-3. **Firebase Setup**:
-   - Create a project at [Firebase Console](https://console.firebase.google.com/).
-   - Add iOS, Android, and Web configurations as needed.
-   - Download `google-services.json` (Android) and `GoogleService-Info.plist` (iOS) and place them in the correct directories.
-   - Follow the [FlutterFire setup guide](https://firebase.flutter.dev/docs/overview) if needed.
+3. **Set up Firebase**:
+   - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/).
+   - Add configurations for iOS, Android, and Web.
+   - Download and add `google-services.json` (for Android) and `GoogleService-Info.plist` (for iOS) to the respective directories.
+   - Follow the [FlutterFire setup guide](https://firebase.flutter.dev/docs/overview).
 
 4. **Run the app**:
    ```bash
    flutter run
    ```
 
-## 🗂 Project Structure
+## 🏆 Feature Overview
 
-The app is organized into various folders for easy development:
-
-- **lib**
-  - **blocs**: State management with Bloc pattern.
-  - **models**: Data models for users, posts, and other features.
-  - **screens**: UI screens like Login, Home Feed, Profile, and Search.
-  - **services**: Firebase interactions and helper functions.
-  - **widgets**: Reusable widgets across the app.
-
-## 🔎 Feature Overview
-
-| Feature               | Description                                           |
-|-----------------------|-------------------------------------------------------|
-| Email Authentication  | Secure sign-in and sign-up via Firebase               |
-| User Profile          | View and customize user information and posts         |
-| Post Images           | Share images with captions                            |
-| Like & Comment        | Interact with user posts                              |
-| Follow System         | Follow users and see their posts                      |
-| Search Users          | Discover users in the Picsy community                 |
-| Light & Dark Mode     | Switch between light and dark themes                  |
+| Feature               | Description                                                         |
+|-----------------------|---------------------------------------------------------------------|
+| Email Authentication  | Secure, Firebase-powered login and registration                     |
+| User Profile          | Profiles display user info and posts                               |
+| Post Images           | Upload and share images with captions                              |
+| Like & Comment        | Interact with posts by liking and leaving comments                 |
+| Follow System         | Follow users to see their latest posts                             |
+| Search Users          | Discover new friends and follow people in the Picsy community      |
+| Light & Dark Mode     | Switch between themes for optimal viewing in any lighting          |
 
 ## 🤝 Contributing
 
-We welcome contributions! To contribute:
+Contributions are welcome! If you have ideas or suggestions, feel free to open an issue or submit a pull request.
 
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature/YourFeature`
-3. Commit changes: `git commit -m 'Add new feature'`
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/YourFeature`
+3. Commit your changes: `git commit -m 'Add a new feature'`
 4. Push to the branch: `git push origin feature/YourFeature`
-5. Open a pull request.
+5. Open a pull request
 
-## 📄 License
+## 🔐 License
 
-Picsy is distributed under the MIT License. See `LICENSE` for more details.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-Thank you for checking out **Picsy** – start capturing, connecting, and creating today!
+Enjoy sharing moments with **Picsy**!
