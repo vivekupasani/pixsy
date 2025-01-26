@@ -9,6 +9,7 @@
 - 📸 **Post Images with Captions**: Share photos, add captions, and inspire others.
 - 💬 **Like & Comment**: Engage with posts by liking and commenting.
 - ❤️ **Follow System**: Connect with friends and followers to stay updated.
+- 💬 **Chatting Feature**: Connect with friends directly through real-time messaging.
 - 🔍 **Search Users**: Find friends and discover new people.
 - 🌗 **Light & Dark Mode**: Choose between light and dark themes to enhance your experience.
 
