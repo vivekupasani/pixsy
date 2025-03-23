@@ -10,6 +10,7 @@ import 'package:pixsy/features/profile/presentation/components/profile_stats.dar
 import 'package:pixsy/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:pixsy/features/profile/presentation/edit_profile_page.dart';
 import 'package:pixsy/features/profile/presentation/follower_page.dart';
+import 'package:pixsy/responsive/magic_box.dart';
 import 'package:pixsy/responsive/scaffold_responsive.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -101,7 +102,7 @@ class _ProfilePageState extends State<ProfilePage> {
               : [];
           postCount = posts.length; // Store the post count
 
-          return ScaffoldResponsive(
+          return Scaffold(
             appBar: AppBar(
               centerTitle: true,
               foregroundColor: Theme.of(context).colorScheme.primary,
@@ -206,58 +207,73 @@ class _ProfilePageState extends State<ProfilePage> {
                 if (!isOwnPost) const SizedBox(height: 18),
 
                 // Bio
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 22),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Bio",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
+                Center(
+                  child: MagicBox(
+                    maxWidth: 420,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 22),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Bio",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
 
                 // Bio Box
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0, vertical: 26.0),
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      (user.bio!.isNotEmpty)
-                          ? user.bio.toString()
-                          : "Empty bio...",
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: Theme.of(context).colorScheme.inversePrimary,
+                Center(
+                  child: MagicBox(
+                    maxWidth: 420,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 26.0),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          (user.bio!.isNotEmpty)
+                              ? user.bio.toString()
+                              : "Empty bio...",
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: Theme.of(context).colorScheme.inversePrimary,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
 
                 // Posts section
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 22),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Posts",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
+                Center(
+                  child: MagicBox(
+                    maxWidth: 420,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 22),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Posts",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
 

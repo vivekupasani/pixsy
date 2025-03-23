@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pixsy/features/authentication/presentation/components/my_textfield.dart';
 import 'package:pixsy/features/profile/presentation/profile_page.dart';
 import 'package:pixsy/features/search/presentation/cubit/search_cubit.dart';
+import 'package:pixsy/responsive/magic_box.dart';
 import 'package:pixsy/responsive/scaffold_responsive.dart';
 
 class SearchPage extends StatefulWidget {
@@ -35,7 +36,7 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldResponsive(
+    return Scaffold(
       appBar: AppBar(
         title: const Text("S E A R C H"),
         centerTitle: true,
@@ -43,12 +44,17 @@ class _SearchPageState extends State<SearchPage> {
       body: Column(
         children: [
           // Search textfield
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: MyTextField(
-              Controller: searchController,
-              hint: "Search...",
-              obscureText: false,
+          Center(
+            child: MagicBox(
+              maxWidth: 720,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: MyTextField(
+                  Controller: searchController,
+                  hint: "Search...",
+                  obscureText: false,
+                ),
+              ),
             ),
           ),
 
@@ -73,29 +79,34 @@ class _SearchPageState extends State<SearchPage> {
                     itemCount: result.length,
                     itemBuilder: (context, index) {
                       final eachUser = result[index];
-                      return ListTile(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      ProfilePage(uid: eachUser.uid),
-                                ));
-                          },
-                          title: Text(eachUser!.name),
-                          subtitle: Text(
-                            eachUser.email,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary),
-                          ),
-                          trailing: Icon(
-                            Icons.arrow_forward,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                          leading: Icon(
-                            Icons.person,
-                            color: Theme.of(context).colorScheme.primary,
-                          ));
+                      return Center(
+                        child: MagicBox(
+                          maxWidth: 620,
+                          child: ListTile(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          ProfilePage(uid: eachUser.uid),
+                                    ));
+                              },
+                              title: Text(eachUser!.name),
+                              subtitle: Text(
+                                eachUser.email,
+                                style: TextStyle(
+                                    color: Theme.of(context).colorScheme.primary),
+                              ),
+                              trailing: Icon(
+                                Icons.arrow_forward,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                              leading: Icon(
+                                Icons.person,
+                                color: Theme.of(context).colorScheme.primary,
+                              )),
+                        ),
+                      );
                     },
                   );
                 } else if (state is SearchError) {

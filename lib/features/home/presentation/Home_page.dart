@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldResponsive(
+    return Scaffold(
       drawer: const MyDrawer(),
       appBar: AppBar(
         elevation: 0,

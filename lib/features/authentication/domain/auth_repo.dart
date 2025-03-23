@@ -1,5 +1,3 @@
-
-
 import 'package:pixsy/features/authentication/domain/app_user.dart';
 
 abstract class AuthRepo {

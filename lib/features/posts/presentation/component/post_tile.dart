@@ -11,13 +11,14 @@ import 'package:pixsy/features/posts/presentation/component/comment_tile.dart';
 import 'package:pixsy/features/posts/presentation/cubit/post_cubit.dart';
 import 'package:pixsy/features/profile/domain/profile_user.dart';
 import 'package:pixsy/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:pixsy/responsive/magic_box.dart';
 
 class PostTile extends StatefulWidget {
   final Post post;
   final Function()? onDelete;
   final void Function()? onTap;
 
-  PostTile(
+  const PostTile(
       {super.key,
       required this.post,
       required this.onDelete,
@@ -133,7 +134,6 @@ class _PostTileState extends State<PostTile> {
     return DateFormat('dd-MM-yyyy').format(timestamp);
   }
 
-
 //dialog for comment box
   void showCommentDialog() {
     showDialog(
@@ -169,230 +169,236 @@ class _PostTileState extends State<PostTile> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor),
-      child: Column(
-        children: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-            child: Row(
-              children: [
-                //profile picture
-                Container(
-                  clipBehavior: Clip.hardEdge,
-                  decoration: const BoxDecoration(shape: BoxShape.circle),
-                  child: SizedBox(
-                    height: 40,
-                    width: 40,
-                    child: postUser != null
-                        ? CachedNetworkImage(
-                            imageUrl: postUser!.profileImageUrl.toString(),
-                            imageBuilder: (context, imageProvider) => Image(
-                              height: 40,
-                              width: 40,
-                              image: imageProvider,
-                              fit: BoxFit.cover,
-                            ),
-                            errorWidget: (context, url, error) => const Center(
-                              child: Icon(
+    return Center(
+      child: MagicBox(
+        maxWidth: 420,
+        child: Container(
+          width: double.infinity,
+          decoration:
+              BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor),
+          child: Column(
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                child: Row(
+                  children: [
+                    //profile picture
+                    Container(
+                      clipBehavior: Clip.hardEdge,
+                      decoration: const BoxDecoration(shape: BoxShape.circle),
+                      child: SizedBox(
+                        height: 40,
+                        width: 40,
+                        child: postUser != null
+                            ? CachedNetworkImage(
+                                imageUrl: postUser!.profileImageUrl.toString(),
+                                imageBuilder: (context, imageProvider) => Image(
+                                  height: 40,
+                                  width: 40,
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
+                                ),
+                                errorWidget: (context, url, error) => const Center(
+                                  child: Icon(
+                                    Icons.person,
+                                    size: 24,
+                                  ),
+                                ),
+                                placeholder: (context, url) => const Center(
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2.0,
+                                  ),
+                                ),
+                              )
+                            : const Icon(
                                 Icons.person,
-                                size: 24,
+                                size: 32,
                               ),
-                            ),
-                            placeholder: (context, url) => const Center(
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2.0,
-                              ),
-                            ),
-                          )
-                        : const Icon(
-                            Icons.person,
-                            size: 32,
-                          ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-
-                //user name
-                GestureDetector(
-                  onTap: widget.onTap,
-                  child: Text(
-                    widget.post.userName,
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.inversePrimary,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-
-                const Spacer(),
-
-                //delete button
-                if (isOwnPost)
-                  GestureDetector(
-                    onTap: showOptions,
-                    child: Icon(
-                      Icons.delete,
-                      color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
-                  )
-              ],
-            ),
-          ),
-
-          //Image
-          CachedNetworkImage(
-            imageUrl: widget.post.imageUrl,
-            imageBuilder: (context, imageProvider) => Image(
-                height: 420, width: double.infinity, image: imageProvider),
-            errorWidget: (context, url, error) => const SizedBox(
-              height: 420,
-              width: double.infinity,
-              child: Center(
-                child: CircularProgressIndicator(),
+                    const SizedBox(
+                      width: 10,
+                    ),
+        
+                    //user name
+                    GestureDetector(
+                      onTap: widget.onTap,
+                      child: Text(
+                        widget.post.userName,
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.inversePrimary,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+        
+                    const Spacer(),
+        
+                    //delete button
+                    if (isOwnPost)
+                      GestureDetector(
+                        onTap: showOptions,
+                        child: Icon(
+                          Icons.delete,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      )
+                  ],
+                ),
               ),
-            ),
-            placeholder: (context, url) => const SizedBox(
-              height: 420,
-              width: double.infinity,
-              child: Center(
-                child: Icon(
-                  Icons.error,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 2,
-          ),
-
-          //Like - Comment - timestamp
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
-            child: Row(
-              children: [
-                //likes button and count
-                SizedBox(
-                    width: 45,
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: toggleLikes,
-                          child: Icon(
-                            widget.post.likes.contains(currentUser!.uid)
-                                ? Icons.favorite
-                                : Icons.favorite_border,
-                            color: widget.post.likes.contains(currentUser!.uid)
-                                ? Colors.red
-                                : Theme.of(context).colorScheme.primary,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          widget.post.likes.length.toString(),
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary),
-                        )
-                      ],
-                    )),
-
-                //comment
-                SizedBox(
-                    width: 45,
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                            onTap: showCommentDialog,
-                            child: Icon(
-                              Icons.comment,
-                              color: Theme.of(context).colorScheme.primary,
-                            )),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          widget.post.comments.length.toString(),
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary),
-                        )
-                      ],
-                    )),
-                const Spacer(),
-                //TimeStamp
-                Text(
-                  formatTimestamp(widget.post.timestamp),
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.primary),
-                ),
-              ],
-            ),
-          ),
-
-          //username and caption
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.post.userName,
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.inversePrimary,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  width: 4,
-                ),
-                Expanded(
-                  child: Text(
-                    widget.post.text,
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.inversePrimary),
+        
+              //Image
+              CachedNetworkImage(
+                imageUrl: widget.post.imageUrl,
+                imageBuilder: (context, imageProvider) => Image(
+                    height: 420, width: double.infinity, image: imageProvider),
+                errorWidget: (context, url, error) => const SizedBox(
+                  height: 420,
+                  width: double.infinity,
+                  child: Center(
+                    child: CircularProgressIndicator(),
                   ),
                 ),
-              ],
-            ),
+                placeholder: (context, url) => const SizedBox(
+                  height: 420,
+                  width: double.infinity,
+                  child: Center(
+                    child: Icon(
+                      Icons.error,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 2,
+              ),
+        
+              //Like - Comment - timestamp
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
+                child: Row(
+                  children: [
+                    //likes button and count
+                    SizedBox(
+                        width: 45,
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                              onTap: toggleLikes,
+                              child: Icon(
+                                widget.post.likes.contains(currentUser!.uid)
+                                    ? Icons.favorite
+                                    : Icons.favorite_border,
+                                color: widget.post.likes.contains(currentUser!.uid)
+                                    ? Colors.red
+                                    : Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              widget.post.likes.length.toString(),
+                              style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary),
+                            )
+                          ],
+                        )),
+        
+                    //comment
+                    SizedBox(
+                        width: 45,
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                                onTap: showCommentDialog,
+                                child: Icon(
+                                  Icons.comment,
+                                  color: Theme.of(context).colorScheme.primary,
+                                )),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              widget.post.comments.length.toString(),
+                              style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary),
+                            )
+                          ],
+                        )),
+                    const Spacer(),
+                    //TimeStamp
+                    Text(
+                      formatTimestamp(widget.post.timestamp),
+                      style:
+                          TextStyle(color: Theme.of(context).colorScheme.primary),
+                    ),
+                  ],
+                ),
+              ),
+        
+              //username and caption
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.post.userName,
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      width: 4,
+                    ),
+                    Expanded(
+                      child: Text(
+                        widget.post.text,
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.inversePrimary),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+        
+              //comments
+              BlocBuilder<PostCubit, PostState>(
+                builder: (context, state) {
+                  if (state is PostLoaded) {
+                    final posts = state.posts.firstWhere(
+                      (post) => post.id == widget.post.id,
+                    );
+        
+                    if (posts.comments.isNotEmpty) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount:
+                            posts.comments.length > 3 ? 3 : posts.comments.length,
+                        itemBuilder: (context, index) {
+                          final comments = posts.comments[index];
+        
+                          return CommentTile(comment: comments);
+                        },
+                      );
+                    }
+                  }
+        
+                  return const SizedBox();
+                },
+              ),
+        
+              const SizedBox(
+                height: 10,
+              )
+            ],
           ),
-          const SizedBox(
-            height: 8,
-          ),
-
-          //comments
-          BlocBuilder<PostCubit, PostState>(
-            builder: (context, state) {
-              if (state is PostLoaded) {
-                final posts = state.posts.firstWhere(
-                  (post) => post.id == widget.post.id,
-                );
-
-                if (posts.comments.isNotEmpty) {
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount:
-                        posts.comments.length > 3 ? 3 : posts.comments.length,
-                    itemBuilder: (context, index) {
-                      final comments = posts.comments[index];
-
-                      return CommentTile(comment: comments);
-                    },
-                  );
-                }
-              }
-
-              return const SizedBox();
-            },
-          ),
-
-          const SizedBox(
-            height: 10,
-          )
-        ],
+        ),
       ),
     );
   }

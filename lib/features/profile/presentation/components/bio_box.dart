@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class BioBox extends StatefulWidget {
   final String bio;
 
-  BioBox({super.key, required this.bio});
+  const BioBox({super.key, required this.bio});
 
   @override
   State<BioBox> createState() => _BioBoxState();

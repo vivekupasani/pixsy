@@ -44,13 +44,13 @@ class Post {
       "imageUrl": imageUrl,
       "timestamp": Timestamp.fromDate(timestamp),
       "likes": likes,
-      "comments": comments.map((e) => e.toJson()).toList(), // Added .toList()
+      "comments": comments.map((e) => e.toJson()).toList(),
     };
   }
 
   factory Post.fromJson(Map<String, dynamic> json) {
     final List<Comment> comments = (json['comments'] as List<dynamic>?)
-            ?.map((e) => Comment.fromJson(e)) // Corrected fromJson method
+            ?.map((e) => Comment.fromJson(e))
             .toList() ??
         [];
 
@@ -62,7 +62,7 @@ class Post {
       imageUrl: json["imageUrl"],
       timestamp: (json["timestamp"] as Timestamp).toDate(),
       likes: List<String>.from(json["likes"]),
-      comments: comments, // Added comments initialization
+      comments: comments,
     );
   }
 }

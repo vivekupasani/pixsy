@@ -9,14 +9,14 @@ class MyButton extends StatelessWidget {
   final Color textColor;
 
   const MyButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onTap,
     this.color = Colors.black,
     this.fontSize = 16.0,
     this.padding = 20.0,
     this.textColor = Colors.white,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

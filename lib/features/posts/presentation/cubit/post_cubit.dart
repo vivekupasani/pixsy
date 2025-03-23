@@ -13,6 +13,7 @@ class PostCubit extends Cubit<PostState> {
   StorageRepo storageRepo;
   PostCubit(this.postRepo, this.storageRepo) : super(PostInitial());
 
+//create post
   Future<void> createPost(Post post,
       {String? imagePath, Uint8List? imageBytes}) async {
     String? imageUrl;
@@ -35,6 +36,7 @@ class PostCubit extends Cubit<PostState> {
     }
   }
 
+//fetch all posts
   Future<void> fetchAllPosts() async {
     try {
       emit(PostLoading());
@@ -45,6 +47,7 @@ class PostCubit extends Cubit<PostState> {
     }
   }
 
+//fetch post by id
    Future<void> fetchAllPostsByUserId(String uid) async {
     try {
       emit(PostLoading());
@@ -55,6 +58,7 @@ class PostCubit extends Cubit<PostState> {
     }
   }
 
+//delete post
   Future<void> deletePost(String postId) async {
     try {
       await postRepo.deletePost(postId);
@@ -63,6 +67,7 @@ class PostCubit extends Cubit<PostState> {
     }
   }
 
+//toggle post
   Future<void> toggleLikes(String postId, String userId) async {
     try {
       postRepo.toggleLike(postId, userId);
@@ -71,6 +76,7 @@ class PostCubit extends Cubit<PostState> {
     }
   }
 
+//add comment
   Future<void> addComment(String postId, Comment comment) async {
     try {
       await postRepo.addComment(postId, comment);
@@ -81,6 +87,7 @@ class PostCubit extends Cubit<PostState> {
     }
   }
 
+//delete commnet
   Future<void> deleteComment(String postId, String commentId) async {
     try {
       await postRepo.deleteComment(postId, commentId);  

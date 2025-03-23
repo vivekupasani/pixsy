@@ -7,7 +7,7 @@ import 'package:pixsy/responsive/scaffold_responsive.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap; // Use final for better performance
-  LoginPage({super.key, required this.onTap});
+  const LoginPage({super.key, required this.onTap});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
