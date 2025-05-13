@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart'; // Ensure to import Flutter BLo
 import 'package:pixsy/features/authentication/presentation/components/my_button.dart';
 import 'package:pixsy/features/authentication/presentation/components/my_textfield.dart';
 import 'package:pixsy/features/authentication/presentation/cubit/authentication_cubit.dart';
+import 'package:pixsy/features/authentication/presentation/forgot_password_page.dart';
 import 'package:pixsy/responsive/scaffold_responsive.dart';
 
 class LoginPage extends StatefulWidget {
@@ -94,6 +95,12 @@ class _LoginPageState extends State<LoginPage> {
                     child: TextButton(
                       onPressed: () {
                         // Implement forgot password functionality
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ForgetPasswordPage(),
+                          ),
+                        );
                       },
                       child: Text(
                         "Forgot password?",

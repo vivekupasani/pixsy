@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:pixsy/features/authentication/domain/app_user.dart';
 import 'package:pixsy/features/authentication/presentation/cubit/authentication_cubit.dart';
 import 'package:pixsy/features/posts/presentation/component/post_tile.dart';
@@ -23,6 +24,12 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  static final customCacheManager  = CacheManager(Config(
+    'customCacheKey',
+    stalePeriod: Duration(days: 15),
+    maxNrOfCacheObjects: 100
+  ));
   late final AuthenticationCubit authCubit =
       context.read<AuthenticationCubit>();
   late final ProfileCubit profileCubit = context.read<ProfileCubit>();
@@ -136,6 +143,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
                 // User profile picture
                 CachedNetworkImage(
+                  key: UniqueKey(),
+                  cacheManager: customCacheManager,
                   imageUrl: user.profileImageUrl.toString(),
                   placeholder: (context, url) => Container(
                     height: 150,

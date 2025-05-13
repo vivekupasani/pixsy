@@ -5,7 +5,6 @@ import 'package:pixsy/features/posts/presentation/component/post_tile.dart';
 import 'package:pixsy/features/posts/presentation/cubit/post_cubit.dart';
 import 'package:pixsy/features/posts/presentation/upload_post_page.dart';
 import 'package:pixsy/features/profile/presentation/profile_page.dart';
-import 'package:pixsy/responsive/scaffold_responsive.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

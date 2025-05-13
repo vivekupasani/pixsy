@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
         child: BlocBuilder<ThemeCubit, ThemeData>(
           builder: (context, state) => MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'V A S U D E V  T E C H N O L O G Y',
+            title: 'pixsy',
             theme: state,
             themeAnimationCurve: Curves.decelerate,
             themeAnimationDuration: const Duration(milliseconds: 1),

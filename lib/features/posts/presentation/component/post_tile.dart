@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart'
+    show CacheManager, Config;
 import 'package:intl/intl.dart';
 import 'package:pixsy/features/authentication/domain/app_user.dart';
 import 'package:pixsy/features/authentication/presentation/components/my_textfield.dart';
@@ -29,6 +31,14 @@ class PostTile extends StatefulWidget {
 }
 
 class _PostTileState extends State<PostTile> {
+  static final customCacheManager = CacheManager(
+    Config(
+      'customCacheKey',
+      stalePeriod: const Duration(days: 15),
+      maxNrOfCacheObjects: 100,
+    ),
+  );
+
   Appuser? currentUser;
   bool isOwnPost = false;
   late final authCubit = context.read<AuthenticationCubit>();
@@ -192,6 +202,8 @@ class _PostTileState extends State<PostTile> {
                         width: 40,
                         child: postUser != null
                             ? CachedNetworkImage(
+                                key: UniqueKey(),
+                                cacheManager: customCacheManager,
                                 imageUrl: postUser!.profileImageUrl.toString(),
                                 imageBuilder: (context, imageProvider) => Image(
                                   height: 40,
@@ -199,7 +211,8 @@ class _PostTileState extends State<PostTile> {
                                   image: imageProvider,
                                   fit: BoxFit.cover,
                                 ),
-                                errorWidget: (context, url, error) => const Center(
+                                errorWidget: (context, url, error) =>
+                                    const Center(
                                   child: Icon(
                                     Icons.person,
                                     size: 24,
@@ -220,7 +233,7 @@ class _PostTileState extends State<PostTile> {
                     const SizedBox(
                       width: 10,
                     ),
-        
+
                     //user name
                     GestureDetector(
                       onTap: widget.onTap,
@@ -231,9 +244,9 @@ class _PostTileState extends State<PostTile> {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-        
+
                     const Spacer(),
-        
+
                     //delete button
                     if (isOwnPost)
                       GestureDetector(
@@ -246,7 +259,7 @@ class _PostTileState extends State<PostTile> {
                   ],
                 ),
               ),
-        
+
               //Image
               CachedNetworkImage(
                 imageUrl: widget.post.imageUrl,
@@ -272,10 +285,11 @@ class _PostTileState extends State<PostTile> {
               const SizedBox(
                 height: 2,
               ),
-        
+
               //Like - Comment - timestamp
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
                 child: Row(
                   children: [
                     //likes button and count
@@ -289,9 +303,10 @@ class _PostTileState extends State<PostTile> {
                                 widget.post.likes.contains(currentUser!.uid)
                                     ? Icons.favorite
                                     : Icons.favorite_border,
-                                color: widget.post.likes.contains(currentUser!.uid)
-                                    ? Colors.red
-                                    : Theme.of(context).colorScheme.primary,
+                                color:
+                                    widget.post.likes.contains(currentUser!.uid)
+                                        ? Colors.red
+                                        : Theme.of(context).colorScheme.primary,
                               ),
                             ),
                             const SizedBox(
@@ -304,7 +319,7 @@ class _PostTileState extends State<PostTile> {
                             )
                           ],
                         )),
-        
+
                     //comment
                     SizedBox(
                         width: 45,
@@ -330,13 +345,13 @@ class _PostTileState extends State<PostTile> {
                     //TimeStamp
                     Text(
                       formatTimestamp(widget.post.timestamp),
-                      style:
-                          TextStyle(color: Theme.of(context).colorScheme.primary),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary),
                     ),
                   ],
                 ),
               ),
-        
+
               //username and caption
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -357,7 +372,8 @@ class _PostTileState extends State<PostTile> {
                       child: Text(
                         widget.post.text,
                         style: TextStyle(
-                            color: Theme.of(context).colorScheme.inversePrimary),
+                            color:
+                                Theme.of(context).colorScheme.inversePrimary),
                       ),
                     ),
                   ],
@@ -366,7 +382,7 @@ class _PostTileState extends State<PostTile> {
               const SizedBox(
                 height: 8,
               ),
-        
+
               //comments
               BlocBuilder<PostCubit, PostState>(
                 builder: (context, state) {
@@ -374,28 +390,29 @@ class _PostTileState extends State<PostTile> {
                     final posts = state.posts.firstWhere(
                       (post) => post.id == widget.post.id,
                     );
-        
+
                     if (posts.comments.isNotEmpty) {
                       return ListView.builder(
                         shrinkWrap: true,
-                        itemCount:
-                            posts.comments.length > 3 ? 3 : posts.comments.length,
+                        itemCount: posts.comments.length > 3
+                            ? 3
+                            : posts.comments.length,
                         itemBuilder: (context, index) {
                           final comments = posts.comments[index];
-        
+
                           return CommentTile(comment: comments);
                         },
                       );
                     }
                   }
-        
+
                   return const SizedBox();
                 },
               ),
-        
+
               const SizedBox(
                 height: 10,
-              )
+              ),
             ],
           ),
         ),

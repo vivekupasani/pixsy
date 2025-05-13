@@ -1,0 +1,2 @@
+C:/Users/Vivek/mobile-apps/pixsy/android/app/.cxx/RelWithDebInfo/1n376666/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/Vivek/mobile-apps/pixsy/android/app/.cxx/RelWithDebInfo/1n376666/x86_64/CMakeFiles/rebuild_cache.dir
