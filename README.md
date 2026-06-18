@@ -14,7 +14,7 @@
 - 🌗 **Light & Dark Mode**: Choose between light and dark themes to enhance your experience.
 
 ## 🕸️ Deployed link
- https://pixsy-b2ccb.web.app/
+
 ## 🎨 Screenshots
 
 <img src="https://github.com/user-attachments/assets/a8672755-ee19-4abb-a12a-0c391b2c8448" alt="Screenshot 1" width="250"/>
